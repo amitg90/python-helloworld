@@ -1,10 +1,18 @@
-name: python-helloworld
+name: ci
 on: [push]
 jobs:
-  check-bats-version:
+  docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: user/app:latest
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
