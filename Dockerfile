@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM alpine:3.10
+FROM python:3.8-slim-buster
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8080
+EXPOSE 5000
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-RUN [ "python", "app.py"]
+CMD [ "python", "app.py"]
