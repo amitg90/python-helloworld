@@ -18,7 +18,7 @@ jobs:
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag amitg90/python-helloworld
       - name: Docker login image
-        run: docker login --username amitg90 --password grover420
+        run: docker login --username <> --password <>
       - name: Docker push image
         run: docker push amitg90/python-helloworld
 
