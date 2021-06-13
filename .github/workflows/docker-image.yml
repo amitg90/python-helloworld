@@ -13,12 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: checkout
       - uses: actions/checkout@v2
-      - name: Build and Publish the Docker image
-      - id: step1
+      
+      - name: Build Docker image
+        id: step1
         run: docker build . --file Dockerfile --tag amitg90/python-helloworld
-      - id: step2
+      - name: Docker login image
+        id: step2
         run: docker login --username amitg90 --password grover420
-      - id: step3
+      - name: Docker push image
+        id: step3
         run: docker push amitg90/python-helloworld
 
