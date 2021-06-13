@@ -9,6 +9,9 @@ on:
 jobs:
 
   build:
+    strategy:
+      matrix:
+        os: [linux/amd64,linux/arm64]
 
     runs-on: ubuntu-latest
 
