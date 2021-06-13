@@ -14,5 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag python-helloworld
+    - name: Build and Publish the Docker image
+      run: docker build . --file Dockerfile --tag amitg90/python-helloworld
+      run: docker login --username amitg90 --password grover420
+      run: docker push amitg90/python-helloworld
+
