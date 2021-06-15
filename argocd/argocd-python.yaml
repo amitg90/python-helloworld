@@ -10,6 +10,6 @@ spec:
   project: default
   source:
     path: python-manifest
-    repoURL: https://github.com/amitg90/python-helloworld/argocd 
+    repoURL: https://github.com/amitg90/python-helloworld 
     targetRevision: HEAD
   syncPolicy: {}
