@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+  managedFields:
+  - apiVersion: v1
+    manager: kubectl-client-side-apply
+  name: argocd-server
+  namespace: argocd
+  resourceVersion: "18513"
+  selfLink: /api/v1/namespaces/argocd/services/argocd-server
+  uid: 53a36417-89d7-4e58-b421-6370f52e0c75
+spec:
+  clusterIP: 10.97.2.213
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30007
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30008
+  selector:
+    app.kubernetes.io/name: argocd-server
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
