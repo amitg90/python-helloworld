@@ -7,12 +7,16 @@ node {
         sh """echo ${commit_id}"""
     }
     stage('docker build/push'){
-        docker.withRegistry('https://hub.docker.com/amitg90/python-helloworld,
-        ''){
-             def dockerfile = 'Dockerfile'
-//              def app = docker.build("python-helloworld:python-helloworld-${commit_id}", '.').push()
-             def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
-        }
+        def dockerfile = 'Dockerfile'
+        def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
+    }
+                             
+//         docker.withRegistry('https://hub.docker.com/amitg90/python-helloworld,
+//         ''){
+//              def dockerfile = 'Dockerfile'
+// //              def app = docker.build("python-helloworld:python-helloworld-${commit_id}", '.').push()
+//              def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
+//         }
     }
 //     stage('aws ecs'){
 //         sh 'chmod +x ./awsfile.sh'
