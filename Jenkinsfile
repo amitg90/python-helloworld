@@ -9,7 +9,9 @@ node {
     stage('docker build/push'){
         docker.withRegistry('https://hub.docker.com/amitg90/python-helloworld,
         ''){
-             def app = docker.build("python-helloworld:python-helloworld-${commit_id}", '.').push()
+             def dockerfile = 'Dockerfile'
+//              def app = docker.build("python-helloworld:python-helloworld-${commit_id}", '.').push()
+             def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
         }
     }
 //     stage('aws ecs'){
