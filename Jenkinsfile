@@ -17,7 +17,7 @@ node {
 // //              def app = docker.build("python-helloworld:python-helloworld-${commit_id}", '.').push()
 //              def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
 //         }
-    }
+//     }
 //     stage('aws ecs'){
 //         sh 'chmod +x ./awsfile.sh'
 //         sh """echo ${commit_id}"""
