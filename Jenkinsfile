@@ -1,15 +1,37 @@
-node ('linux') {
-    def commit_id
-    stage('Prep'){
-        checkout scm
-        sh "git rev-parse --short HEAD > .git/commit-id"
-        commit_id = readFile('.git/commit-id').trim()
-        sh """echo ${commit_id}"""
+pipeline {
+  agent none
+  stages {
+//     stage('Maven Install') {
+//       agent {
+//         docker {
+//           image 'maven:3.5.0'
+//         }
+//       }
+//       steps {
+//         sh 'mvn clean install'
+//       }
+//     }
+    stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t amit:latest .'
+      }
     }
-    stage('docker build/push'){
-        def dockerfile = 'Dockerfile'
-        def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
-    }
+  }
+}
+
+// node ('linux') {
+//     def commit_id
+//     stage('Prep'){
+//         checkout scm
+//         sh "git rev-parse --short HEAD > .git/commit-id"
+//         commit_id = readFile('.git/commit-id').trim()
+//         sh """echo ${commit_id}"""
+//     }
+//     stage('docker build/push'){
+//         def dockerfile = 'Dockerfile'
+//         def customImage = docker.build("python-helloworld", "-f ${dockerfile} .") 
+//     }
                              
 //         docker.withRegistry('https://hub.docker.com/amitg90/python-helloworld,
 //         ''){
@@ -23,7 +45,7 @@ node ('linux') {
 //         sh """echo ${commit_id}"""
 //         sh "./awsfile.sh ${commit_id}"
 //     }
-}
+// }
 
 // pipeline {
 //     agent {
