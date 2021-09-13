@@ -1,4 +1,4 @@
-node {
+node ('linux') {
     def commit_id
     stage('Prep'){
         checkout scm
