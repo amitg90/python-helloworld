@@ -2,25 +2,12 @@ pipeline {
   agent {
     docker {
       image 'node:6-alpine'
-      args '-p 3000:3000'
     }
-
   }
   stages {
-//     stage('Maven Install') {
-//       agent {
-//         docker {
-//           image 'maven:3.5.0'
-//         }
-//       }
-//       steps {
-//         sh 'mvn clean install'
-//       }
-//     }
     stage('Docker Build') {
-      agent any
       steps {
-        sh 'docker build -t amit:latest .'
+        sh 'docker build -t amit .'
       }
     }
   }
